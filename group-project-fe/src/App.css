@@ -5,3 +5,8 @@ body{
     border-image-slice: 1;
     width:100%;
 }
+
+.leaflet-container{
+    height: 400px;
+    width: 400px;
+}
