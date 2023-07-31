@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer matches snapshot   1`] = `
+<footer>
+  <div
+    className="container"
+  >
+    <div
+      id="footer-logo-section"
+    >
+      <img
+        alt=""
+        src="/sky_logo.png"
+      />
+      <span>
+        © 2023 Sky UK
+      </span>
+    </div>
+    <ul
+      id="footer-middle-section"
+    />
+    <div
+      id="footer-language-section"
+    >
+      <label
+        htmlFor="footer-countries-dropdown"
+      >
+        Country: 
+      </label>
+      <select
+        id="footer-countries-dropdown"
+        name="footer-countries-dropdown"
+      >
+        <option
+          value="uk"
+        >
+          UK
+        </option>
+        <option
+          value="ireland"
+        >
+          Ireland
+        </option>
+      </select>
+    </div>
+  </div>
+</footer>
+`;
