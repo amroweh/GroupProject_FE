@@ -16,7 +16,6 @@
 
 .weatherBox img{
     width: 35px;
-    margin-bottom: 5px;
 }
 
 .weatherBox span:first-of-type{
@@ -29,4 +28,11 @@
 
 .weatherBox .precipitation{
     font-size: 12px;
+}
+
+.weatherBox .weatherIconContainer{
+    min-height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
