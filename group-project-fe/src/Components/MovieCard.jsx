@@ -9,39 +9,20 @@ import {
 import "./css/movie.css";
 import MovieItem from "./MovieItem";
 
-const MovieCard = () => {
+const MovieCard = (props) => {
+  const locations = JSON.stringify(props.movie.locations);
+
   return (
     <>
       <div className="card col-md-4 card-gap custom-enlarge">
         <div className="card-body">
-          <h5 className="card-title">Movie title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <h5 className="card-title">{props.movie.title}</h5>
+          <p className="card-text">{props.movie.description}</p>
+          <p className="card-text">{props.movie.genre}</p>
+          <p className="card-text">{locations}</p>
         </div>
       </div>
     </>
-
-    // <Routes>
-    //   <Route
-    //     className="card col-md-4 card-gap custom-enlarge"
-    //     id="card-component"
-    //     element={<MovieItem />}
-    //   >
-    //     <>
-    //       {/* <div class="card col-md-4 card-gap custom-enlarge"> */}
-    //       <div className="card-body">
-    //         <h5 className="card-title">Movie title</h5>
-    //         <p className="card-text">
-    //           Some quick example text to build on the card title and make up the
-    //           bulk of the card's content.
-    //         </p>
-    //       </div>
-    //       {/* </div> */}
-    //     </>
-    //   </Route>
-    // </Routes>
   );
 };
 

@@ -16,10 +16,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Movies />} />
-        <Route
+        {/* <Route
           path="/movie"
           element={<MoviePage movieTitle="Guardians of the Galaxy" />}
-        />
+        /> */}
       </Routes>
 
       <Footer />
