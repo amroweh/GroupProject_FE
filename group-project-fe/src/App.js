@@ -5,10 +5,12 @@ import Movies from "./Components/Movies";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
+import FlightWidget from "./Components/FlightWidget";
 
 function App() {
   return (
     <BrowserRouter>
+    <FlightWidget></FlightWidget>
       <Movies />
 
       <h1>Testing Open Street Maps here...</h1>
