@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Movies from "./Components/Movies";
 import Footer from "./Components/Footer";
+import LocationCarousel from "./Components/LocationCarousel";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
 
@@ -10,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Movies />
-
+      <LocationCarousel />
       <h1>Testing Open Street Maps here...</h1>
       <h3>Note: can add multiple pins to map</h3>
       {/* Testing Open Street Maps with Leaflet package to display markers and maps */}
