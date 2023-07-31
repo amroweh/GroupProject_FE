@@ -1,0 +1,7 @@
+.custom-enlarge:hover {
+  transform: scale(1.1);
+}
+
+#card-component {
+  text-decoration: none;
+}
