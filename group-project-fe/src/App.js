@@ -6,27 +6,22 @@ import Footer from "./Components/Footer";
 import LocationCarousel from "./Components/LocationCarousel";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
+import WeatherSummary from "./Components/WeatherSummary";
+import MoviePage from "./Components/MoviePage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Movies />
-      <LocationCarousel />
-      <h1>Testing Open Street Maps here...</h1>
-      <h3>Note: can add multiple pins to map</h3>
-      {/* Testing Open Street Maps with Leaflet package to display markers and maps */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "50px",
-          marginTop: "50px",
-        }}
-      >
-        <OSMap />
-      </div>
-      <OSMap longitude={50.01} latitude={1.23} />
+      {/* <Movies /> */}
+
+      <Routes>
+        <Route path="/" element={<Movies />} />
+        <Route
+          path="/movie"
+          element={<MoviePage movieTitle="Guardians of the Galaxy" />}
+        />
+      </Routes>
+
       <Footer />
     </BrowserRouter>
   );
