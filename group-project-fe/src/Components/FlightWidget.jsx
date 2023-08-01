@@ -1,54 +1,54 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
+import DateSelector from './DateSelector';
+import moment from 'moment';
 
 
-const FlightWidget = () => {
 
-    //need input for origin code, destination code, and departure date 
+const FlightWidget = ({date, destination, origin}) => {
+  
+  moment.locale('en');
 
-    const bestFlightUrl = "http://18.130.102.78:8082/bestFlight?originCode=LHR&destinationCode=JFK&departureDate=2023-10-21"
-    const allFlightsUrl = "http://18.130.102.78:8082/allFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-10-21" 
-    const numberFlightsUrl = "http://18.130.102.78:8082/getSelectedNumberOfFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-10-21&numberRequested=4"
 
-    const testLink = "http://localhost:8082/testBestFlight?originCode=LHR&destinationCode=JFK&departureDate=2023-08-20"
-    const testLinkTwo = "http://localhost:8082/testAllFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-08-20"
+    //Current urls connect to the server you can use the URL below if you want to test locally
+
+    //can use these to test locally if needed
+    //const LocalTopFourFlights = "http://localhost:8082/getSelectedNumberOfFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-10-21&numberRequested=4"
 
     //add use state
     const [{someData: data}, setData] = useState("");
     const [{flights: flightdata}, setFlightData] = useState("");
     const [loading, setLoading] = useState(true);
 
+    //function to call the BestFlight
     const getBestFlight = async ()=>{
         try{
-          const res = await axios.get(testLink);
-          //console.log("test" + res);
+          var url = `http://18.130.102.78:8082/bestFlight?originCode=${origin}&destinationCode=${destination}&departureDate=${date}`
+
+          const res = await axios.get(url);
           const data = await res.data;
-          //console.log(data);
-          //return res.data.length? {flights: res.data} : {error:'There is no flight stored'}
           return data;
           
         }
         catch(e){
-        //   setGetError(`Data not available from server: ${e.message}`)
             return {error: `Data not available from server: ${e.message}`}
-    
         }
-
-        //display the error
       }
 
+
+    //Function to call the topFlights and return a list of all flights available
       const getTopFlights = async ()=>{
         try{
-          const result = await axios.get(testLinkTwo);
+          var url = `http://18.130.102.78:8082/getSelectedNumberOfFlights?originCode=${origin}&destinationCode=${destination}&departureDate=${date}&numberRequested=4`
+          const result = await axios.get(url);
           const data = await result.data;
-          console.log(data)
           return data;
         }
         catch(e){
-        //   setGetError(`Data not available from server: ${e.message}`)
-            return {error: `Data not available from server: ${e.message}`}
-    
+            console.error(`Data not available from server: ${e.message}`)
+            return []
         }
       }
 
@@ -57,7 +57,6 @@ const FlightWidget = () => {
         async function aFunction() {
             const getBestFlightData = await getBestFlight();
             const getAllFlightData = await getTopFlights();
-            //const x = await getFlightData();
             setData({someData: getBestFlightData});
             setFlightData({flights: getAllFlightData});
             setLoading(false);
@@ -66,41 +65,41 @@ const FlightWidget = () => {
           aFunction(); 
       },[])
 
-
-      
-
-      //is ready - new state boolean false when data comes back set state value to true conditionally render list group
-
+  
   if (loading) {
-    return <div>Flight data is loading...</div>
+    return 
+      <div>Flight data is loading...</div>
   } else {
     return (
       <>
+       <DateSelector/>
+      <Table striped bordered hover>
       <h2>Best Flight</h2>
       <ListGroup horizontal>
-            <ListGroup.Item><img src={data.carrierLogoURL} height="25"/></ListGroup.Item>
-            <ListGroup.Item>{data.carrier}</ListGroup.Item> 
-            <ListGroup.Item>{data.departure}</ListGroup.Item>
-            <ListGroup.Item>{data.arrival}</ListGroup.Item>
-            <ListGroup.Item>£{data.price}</ListGroup.Item>
+            <ListGroup.Item><img src={data.carrierLogoURL} height="35"/></ListGroup.Item>
+            <ListGroup.Item className='col-2'>{data.carrier}</ListGroup.Item> 
+            <ListGroup.Item className='col-2'>{moment(data.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+            <ListGroup.Item className='col-2'>{moment(data.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+            <ListGroup.Item className='col-1'>£{data.price}</ListGroup.Item>
       </ListGroup>
       <h2>All flights</h2>
       
           {flightdata.map((flight) => (
           < ListGroup horizontal>
-            <ListGroup.Item><img src={flight.carrierLogoURL} height="25"/></ListGroup.Item>
-            <ListGroup.Item>{flight.carrier}</ListGroup.Item>
-            <ListGroup.Item>{flight.departure}</ListGroup.Item>
-            <ListGroup.Item>{flight.arrival}</ListGroup.Item>
-            <ListGroup.Item>{flight.price}</ListGroup.Item>
+            <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
+            <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
+            <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+            <ListGroup.Item className='col-2'>{moment(flight.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+            <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
             </ListGroup> 
           ))} 
+          </Table>
+         
      
     </>
     )
 
-  }
-        
+  }        
   
 }
 
