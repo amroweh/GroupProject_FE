@@ -1,6 +1,6 @@
-import React from 'react'
-import WeatherBox from './WeatherBox'
-import './css/weathersummary.css'
+import React from "react";
+import WeatherBox from "./WeatherBox";
+import "./css/weathersummary.css";
 
 const WeatherSummary = (props) => {  
 
@@ -12,7 +12,7 @@ return (
             {props.weather.map(el=>{return <WeatherBox key={el.day} high={el.high} low={el.low} day={el.day} precipitation={el.precipitation} wind={el.wind} />})}
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default WeatherSummary
+export default WeatherSummary;
