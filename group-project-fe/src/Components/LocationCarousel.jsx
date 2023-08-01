@@ -4,12 +4,14 @@ import ItemInCarousel from "./ItemInCarousel";
 
 const getDataForLocation = () => {
   console.log("From get data");
+  // console.log("From within carousel component: " + locationData);
 };
 
 const LocationCarousel = (props) => {
   //   const [activeCity, setActiveCity] = useState("");
 
-  //   const [locationData, setLocationData] = useState({});
+  // console.log(JSON.parse(props.locs));
+  const locationData = JSON.parse(props.locs);
 
   const [index, setIndex] = useState(0);
 
@@ -19,14 +21,26 @@ const LocationCarousel = (props) => {
 
   const dataArray = [
     {
+      location_id: 1,
+      city: "Columbus",
+      country: "USA",
+      nearest_airport_code: "CMH",
+    },
+    {
+      location_id: 2,
+      city: "Cleveland",
+      country: "USA",
+      nearest_airport_code: "CLE",
+    },
+    {
       location_id: 3,
       city: "Cincinatti",
       country: "USA",
       nearest_airport_code: "LUK",
     },
     {
-      location_id: 2,
-      city: "Cleveland",
+      location_id: 4,
+      city: "Sandusky",
       country: "USA",
       nearest_airport_code: "CLE",
     },
@@ -35,7 +49,7 @@ const LocationCarousel = (props) => {
   return (
     <>
       <Carousel interval={null} activeIndex={index} onSelect={handleSelect}>
-        {dataArray.map((item) => (
+        {locationData.map((item) => (
           <Carousel.Item key={item.location_id}>
             <img
               src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
@@ -50,9 +64,9 @@ const LocationCarousel = (props) => {
         ))}
       </Carousel>
       <h3>
-        The current city and country selected is: {dataArray[index].city}
+        The current city and country selected is: {locationData[index].city}
         {" in "}
-        {dataArray[index].country}
+        {locationData[index].country}
       </h3>
     </>
   );

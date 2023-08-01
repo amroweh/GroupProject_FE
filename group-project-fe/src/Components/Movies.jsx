@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+import "./css/movie.css";
 
 const getMoviesLocations = async () => {
   try {
@@ -28,29 +29,24 @@ const Movies = () => {
       });
   }, []);
 
-  return (
-    <>
-      <div className="movie-layout--container">
-        <div className="movie-layout--article">
-          <div className="moviecard-container container-md ">
-            <div className="row p-2 m-2 g-4">
-              {/* {movieData.map((movie) => (
-                <div key={movie.movie_id}>
-                  <h3>{movie.title}</h3>
-                  <p>{movie.description}</p>
-                  <p>{movie.genre}</p>
-                  <p>{JSON.stringify(movie.locations)}</p>
-                </div>
-              ))} */}
-              {movieData.map((movie) => {
-                return <MovieCard key={movie.movie_id} movie={movie} />;
-              })}
+  if (loading) {
+    return <div>Loading...</div>;
+  } else
+    return (
+      <>
+        <div className="movie-layout--container">
+          {/* <div className="movie-layout--article"> */}
+          <div className="moviecard-container col-md-12 col-sm-6">
+            <div className="p-2 m-2 g-4 row">
+              {movieData.map((movie) => (
+                <MovieCard key={movie.movie_id} movie={movie} />
+              ))}
             </div>
           </div>
+          {/* </div> */}
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 };
 
 export default Movies;
