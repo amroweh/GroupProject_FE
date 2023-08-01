@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
         <div className='container'>
-            <div id="headerLogo"><img src="/sky_logo.png" alt="" /></div>
+            <div id="headerLogo"><img src="/IronDevsLogo.png" alt="" /></div>
             <ul id="headerMenu">
                 <li><NavLink style={{all: "unset"}} to="/">Home</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/">About</NavLink></li> 
