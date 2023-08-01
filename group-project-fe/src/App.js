@@ -7,8 +7,8 @@ import Footer from "./Components/Footer";
 import LocationCarousel from "./Components/LocationCarousel";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
-import WeatherSummary from "./Components/WeatherSummary"
-import MoviePage from "./Components/MoviePage"
+import WeatherSummary from "./Components/WeatherSummary";
+import MoviePage from "./Components/MoviePage";
 
 function App() {
   return (
