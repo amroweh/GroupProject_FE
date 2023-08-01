@@ -7,12 +7,15 @@ import Footer from "./Components/Footer";
 import LocationCarousel from "./Components/LocationCarousel";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
+import FlightWidget from "./Components/FlightWidget";
+import DateSelector from "./Components/DateSelector";
 import WeatherSummary from "./Components/WeatherSummary";
 import MoviePage from "./Components/MoviePage";
 
 function App() {
   return (
     <BrowserRouter>
+    <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>
       {/* <Movies /> */}
       <Header />
       <Routes>
