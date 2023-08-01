@@ -1,61 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import ItemInCarousel from "./ItemInCarousel";
+import axios from "axios";
 
-const getDataForLocation = () => {
-  console.log("From get data");
-  // console.log("From within carousel component: " + locationData);
+// return an image for a specified place
+const getImageForLocation = async (location) => {
+  try {
+    // const reqBody = { query: location, numOfPictures: 1 };
+    const response = await axios.get(
+      `http://18.130.102.78:8082/image?query=${location}&numOfPictures=${1}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const LocationCarousel = (props) => {
-  //   const [activeCity, setActiveCity] = useState("");
+  const createRequestForLocation = async (location) => {
+    const data = await getImageForLocation(location);
+    setImageURL(data[0].urls.regular);
+    setAlt(data[0]["alt_description"]);
+  };
 
-  // console.log(JSON.parse(props.locs));
+  const [imageURL, setImageURL] = useState("");
+  const [alt, setAlt] = useState("");
+
   const locationData = JSON.parse(props.locs);
 
   const [index, setIndex] = useState(0);
 
+  useEffect(() => {
+    createRequestForLocation(locationData[index].city);
+  }, [index]);
+
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-
-  const dataArray = [
-    {
-      location_id: 1,
-      city: "Columbus",
-      country: "USA",
-      nearest_airport_code: "CMH",
-    },
-    {
-      location_id: 2,
-      city: "Cleveland",
-      country: "USA",
-      nearest_airport_code: "CLE",
-    },
-    {
-      location_id: 3,
-      city: "Cincinatti",
-      country: "USA",
-      nearest_airport_code: "LUK",
-    },
-    {
-      location_id: 4,
-      city: "Sandusky",
-      country: "USA",
-      nearest_airport_code: "CLE",
-    },
-  ];
 
   return (
     <>
       <Carousel interval={null} activeIndex={index} onSelect={handleSelect}>
         {locationData.map((item) => (
           <Carousel.Item key={item.location_id}>
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
-              className="d-block w-100"
-              alt="Wild Landscape"
-            />
+            <img src={imageURL} className="d-block w-100" alt={alt} />
             <Carousel.Caption>
               <h1>{item.country}</h1>
               <h2>{item.city}</h2>
