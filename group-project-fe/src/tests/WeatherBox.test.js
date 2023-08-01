@@ -1,5 +1,26 @@
-// import React from 'react';
-// import { create } from 'react-test-renderer';
+import React from 'react';
+import { create } from 'react-test-renderer';
+import WeatherBox from '../Components/WeatherBox';
+
+describe("Weather Box Test Suite", ()=>{
+    test("it should render the correct day from props when a day prop is supplied", ()=>{
+        const testDay = "Monday"
+        const testRenderer = create(<WeatherBox day={testDay}/>)
+        const testInstance = testRenderer.root
+        expect(testInstance.findByType('h5').children).toContain(testDay)    
+    })
+    
+    test("it should render the correct precipitation from props when a precipitation prop is supplied", ()=>{
+        const testPrec = 35
+        const testRenderer = create(<WeatherBox precipitation={testPrec}/>)
+        const testInstance = testRenderer.root
+        expect(testInstance.findAllByType("div")[3].children).toContain(testPrec.toString())    
+    })
+    
+})
+
+
+
 
 // // jest.mock("../Components/utils/Todo.model", () => {
 // //     // return class TodoModel {
