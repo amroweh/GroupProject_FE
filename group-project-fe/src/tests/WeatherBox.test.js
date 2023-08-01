@@ -14,8 +14,9 @@ describe("Weather Box Test Suite", ()=>{
         const testPrec = 35
         const testRenderer = create(<WeatherBox precipitation={testPrec}/>)
         const testInstance = testRenderer.root
-        expect(testInstance.findAllByType("div")[2].children).toContain(testPrec.toString())    
-    })    
+        expect(testInstance.findAllByType("div")[3].children).toContain(testPrec.toString())    
+    })
+    
 })
 
 
