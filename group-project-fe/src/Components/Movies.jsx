@@ -9,7 +9,6 @@ const getMoviesLocations = async () => {
     return res.data;
   } catch (e) {
     console.error(e);
-    return [];
   }
 };
 
@@ -37,12 +36,13 @@ const Movies = () => {
         <div className="movie-layout--container">
           {/* <div className="movie-layout--article"> */}
           <div className="moviecard-container col-md-12 col-sm-6">
-            <div className="p-2 m-2 g-4 row">
+            <div className="p-2 m-2 g-4 row" testid="moviecard-item">
               {movieData.map((movie) => (
                 <MovieCard key={movie.movie_id} movie={movie} />
               ))}
             </div>
           </div>
+          <div></div>
           {/* </div> */}
         </div>
       </>

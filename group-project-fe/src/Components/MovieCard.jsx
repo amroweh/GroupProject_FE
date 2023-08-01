@@ -20,6 +20,7 @@ const MovieCard = (props) => {
       to={`/${props.movie.movie_id}/plan`}
       state={locations}
       className="col-md-6"
+      test-id="moviecard-link"
     >
       <div className="card card-gap custom-enlarge">
         <div className="card-body">
