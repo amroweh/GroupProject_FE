@@ -12,15 +12,17 @@ const getImageForLocation = async (location) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Uncaught exception occured: " + error);
   }
 };
 
 const LocationCarousel = (props) => {
   const createRequestForLocation = async (location) => {
     const data = await getImageForLocation(location);
-    setImageURL(data[0].urls.regular);
-    setAlt(data[0]["alt_description"]);
+    try {
+      setImageURL(data[0].urls.regular);
+      setAlt(data[0]["alt_description"]);
+    } catch {}
   };
 
   const [imageURL, setImageURL] = useState("");
@@ -40,6 +42,9 @@ const LocationCarousel = (props) => {
 
   return (
     <>
+      <h1 style={{ textAlign: "center" }}>
+        Use the carousel to select your location
+      </h1>
       <Carousel
         fade
         interval={null}
@@ -48,7 +53,12 @@ const LocationCarousel = (props) => {
       >
         {locationData.map((item) => (
           <Carousel.Item key={item.location_id}>
-            <img src={imageURL} className="d-block w-100" alt={alt} />
+            <img
+              src={imageURL}
+              className="d-block w-100"
+              alt={alt}
+              style={{ height: "500px", objectFit: "cover" }}
+            />
             <Carousel.Caption>
               <h1>{item.country}</h1>
               <h2>{item.city}</h2>
@@ -56,7 +66,7 @@ const LocationCarousel = (props) => {
           </Carousel.Item>
         ))}
       </Carousel>
-      <h3>
+      <h3 style={{ textAlign: "center" }}>
         The current city and country selected is: {locationData[index].city}
         {" in "}
         {locationData[index].country}
