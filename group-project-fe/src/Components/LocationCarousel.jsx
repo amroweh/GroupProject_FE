@@ -40,7 +40,12 @@ const LocationCarousel = (props) => {
 
   return (
     <>
-      <Carousel interval={null} activeIndex={index} onSelect={handleSelect}>
+      <Carousel
+        fade
+        interval={null}
+        activeIndex={index}
+        onSelect={handleSelect}
+      >
         {locationData.map((item) => (
           <Carousel.Item key={item.location_id}>
             <img src={imageURL} className="d-block w-100" alt={alt} />

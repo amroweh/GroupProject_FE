@@ -17,10 +17,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Movies />} />
         <Route path="/:id/plan" element={<MoviePage />} />
-        {/* <Route
-          path="/movie"
-          element={<MoviePage movieTitle="Guardians of the Galaxy" />}
-        /> */}
       </Routes>
 
       <Footer />
