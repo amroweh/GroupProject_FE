@@ -15,13 +15,15 @@ import MoviePage from "./Components/MoviePage";
 function App() {
   return (
     <BrowserRouter>
-    <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>
-      {/* <Movies /> */}
+    <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>      
       <Header />
-      <Routes>
-        <Route path="/" element={<Movies />} />
-        <Route path="/:id/plan" element={<MoviePage />} />
-      </Routes>
+
+      <div style={{minHeight: "100vh"}}>
+        <Routes>
+          <Route path="/" element={<Movies />} />
+          <Route path="/:id/plan" element={<MoviePage />} />
+        </Routes>
+      </div>
 
       <Footer />
     </BrowserRouter>
