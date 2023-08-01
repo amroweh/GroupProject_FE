@@ -12,18 +12,22 @@ const FlightWidget = () => {
     const numberFlightsUrl = "http://18.130.102.78:8082/getSelectedNumberOfFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-10-21&numberRequested=4"
 
     const testLink = "http://localhost:8082/testBestFlight?originCode=LHR&destinationCode=JFK&departureDate=2023-08-20"
+    const testLinkTwo = "http://localhost:8082/testAllFlights?originCode=LHR&destinationCode=JFK&departureDate=2023-08-20"
 
     //add use state
     const [{someData: data}, setData] = useState("");
+    const [{flights: flightdata}, setFlightData] = useState("");
+    const [loading, setLoading] = useState(true);
 
     const getBestFlight = async ()=>{
         try{
           const res = await axios.get(testLink);
           //console.log("test" + res);
-          //const data = await res.data;
+          const data = await res.data;
           //console.log(data);
           //return res.data.length? {flights: res.data} : {error:'There is no flight stored'}
-          return res.data;
+          return data;
+          
         }
         catch(e){
         //   setGetError(`Data not available from server: ${e.message}`)
@@ -36,8 +40,10 @@ const FlightWidget = () => {
 
       const getTopFlights = async ()=>{
         try{
-          const result = await axios.get(numberFlightsUrl);
-          return result.data.length? {flights: result.data} : {error:'There are no flights stored'}
+          const result = await axios.get(testLinkTwo);
+          const data = await result.data;
+          console.log(data)
+          return data;
         }
         catch(e){
         //   setGetError(`Data not available from server: ${e.message}`)
@@ -46,42 +52,56 @@ const FlightWidget = () => {
         }
       }
 
-      async function aFunction() {
-        const getFlightData = await getBestFlight();
-        const x = await getFlightData.json();
-
-      }
-
       //call the server in UseEffect
-
       useEffect( ()=>{
         async function aFunction() {
-            const getFlightData = await getBestFlight();
+            const getBestFlightData = await getBestFlight();
+            const getAllFlightData = await getTopFlights();
             //const x = await getFlightData();
-            setData({someData: getFlightData});
+            setData({someData: getBestFlightData});
+            setFlightData({flights: getAllFlightData});
+            setLoading(false);
           }
-          aFunction();
-        //const getData = async () =>{
-          
+        
+          aFunction(); 
       },[])
+
 
       
 
-  return (
-    <>
-    <h2>Best Flight</h2>
-    <div>{JSON.stringify(data)}</div>
-    
-    <ListGroup horizontal>
-      <ListGroup.Item>{JSON.stringify(data.price)}</ListGroup.Item>
-      <ListGroup.Item>ListGroup</ListGroup.Item>
-      <ListGroup.Item>renders</ListGroup.Item>
-      <ListGroup.Item>horizontally!</ListGroup.Item>
-    </ListGroup>
-    <h2>All flights</h2>
-    <div></div>
+      //is ready - new state boolean false when data comes back set state value to true conditionally render list group
+
+  if (loading) {
+    return <div>Flight data is loading...</div>
+  } else {
+    return (
+      <>
+      <h2>Best Flight</h2>
+      <ListGroup horizontal>
+            <ListGroup.Item><img src={data.carrierLogoURL} height="25"/></ListGroup.Item>
+            <ListGroup.Item>{data.carrier}</ListGroup.Item> 
+            <ListGroup.Item>{data.departure}</ListGroup.Item>
+            <ListGroup.Item>{data.arrival}</ListGroup.Item>
+            <ListGroup.Item>£{data.price}</ListGroup.Item>
+      </ListGroup>
+      <h2>All flights</h2>
+      
+          {flightdata.map((flight) => (
+          < ListGroup horizontal>
+            <ListGroup.Item><img src={flight.carrierLogoURL} height="25"/></ListGroup.Item>
+            <ListGroup.Item>{flight.carrier}</ListGroup.Item>
+            <ListGroup.Item>{flight.departure}</ListGroup.Item>
+            <ListGroup.Item>{flight.arrival}</ListGroup.Item>
+            <ListGroup.Item>{flight.price}</ListGroup.Item>
+            </ListGroup> 
+          ))} 
+     
     </>
-  )
+    )
+
+  }
+        
+  
 }
 
 export default FlightWidget
