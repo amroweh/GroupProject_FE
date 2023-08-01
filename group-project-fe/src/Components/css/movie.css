@@ -1,7 +1,12 @@
 .custom-enlarge:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  /* align-items: center; */
 }
 
 #card-component {
+  text-decoration: none;
+}
+
+a {
   text-decoration: none;
 }

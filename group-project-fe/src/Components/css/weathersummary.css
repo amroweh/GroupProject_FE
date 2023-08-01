@@ -1,0 +1,18 @@
+.weatherContainer{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.weatherContainer h6{
+    margin-top: 8px;
+    font-weight: 350;
+}
+
+.weatherSummary{
+    width: 100%;
+    background-color: "#FFFFFF";
+    padding: 20px 5px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}

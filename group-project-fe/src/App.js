@@ -1,34 +1,28 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Header from "./Components/Header";
 import Movies from "./Components/Movies";
 import Footer from "./Components/Footer";
+import LocationCarousel from "./Components/LocationCarousel";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import OSMap from "./Components/OSMap";
 import FlightWidget from "./Components/FlightWidget";
 import DateSelector from "./Components/DateSelector";
+import WeatherSummary from "./Components/WeatherSummary";
+import MoviePage from "./Components/MoviePage";
 
 function App() {
   return (
     <BrowserRouter>
     <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>
-      <Movies />
+      {/* <Movies /> */}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Movies />} />
+        <Route path="/:id/plan" element={<MoviePage />} />
+      </Routes>
 
-      <h1>Testing Open Street Maps here...</h1>
-      <h3>Note: can add multiple pins to map</h3>
-      {/* Testing Open Street Maps with Leaflet package to display markers and maps */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "50px",
-          marginTop: "50px",
-        }}
-      >
-        <OSMap />
-      </div>
-      <OSMap longitude={50.01} latitude={1.23} />
       <Footer />
     </BrowserRouter>
   );
