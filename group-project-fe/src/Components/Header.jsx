@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./css/header.css"
 import { NavLink } from 'react-router-dom'
 import { useEffect } from "react";
@@ -7,10 +7,19 @@ const google = window.google;
 
 const Header = () => {
 
+    const [user, setUser ] = useState({})
+
     function handleCallbackResponse(response){
     console.log("Encoded JWT ID:" + response.credential);
     var userObject = jwt_decode(response.credential)
-    console.log(userObject)
+    setUser(userObject)
+    console.log(user);
+    document.getElementById("signInDiv").hidden = true;
+  }
+
+  function handleSignOut() {
+    setUser({})
+    document.getElementById("signInDiv").hidden = false;
   }
 
   useEffect(() => {
@@ -36,9 +45,17 @@ const Header = () => {
                 <li><NavLink style={{all: "unset"}} to="/">Contact</NavLink></li> 
             </ul>
             <div id="headerLogin">
-                <div id="signInDiv" className='headerLoginButton'>
-                    <NavLink style={{all: "unset"}} to="/">Login</NavLink>
-                </div>                
+                <div id="signInDiv" className='headerLoginButton'></div>
+                { Object.keys(user).length != 0 &&
+                  <button onClick={(e)=> handleSignOut()}>Sign out</button>  
+                }
+                     
+                {user &&
+                    <div>
+                        <img src={user.picture}/>
+                        <h3>{user.given_name}</h3>
+                    </div>
+                }         
             </div>
         </div>
     </header>

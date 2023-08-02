@@ -6,18 +6,28 @@ import Movies from "./Components/Movies";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import MoviePage from "./Components/MoviePage"
-import { useEffect } from "react";
-import jwt_decode from "jwt-decode"
 
+import { useEffect } from "react";
+import { useState } from "react";
+import jwt_decode from "jwt-decode"
 const google = window.google;
 
 function App() {
+
+  const [user, setUser ] = useState({})
 
 
   function handleCallbackResponse(response){
     console.log("Encoded JWT ID:" + response.credential);
     var userObject = jwt_decode(response.credential)
-    console.log(userObject)
+    setUser(userObject)
+    console.log(user);
+    document.getElementById("signInDiv").hidden = true;
+  }
+
+  function handleSignOut() {
+    setUser({})
+    document.getElementById("signInDiv").hidden = false;
   }
 
   useEffect(() => {
@@ -32,11 +42,28 @@ function App() {
     )
   },[]);
 
-  return (
+
+  return (    
+
     <BrowserRouter>
       {/* <Movies /> */}
       <Header />
-      <div id="signInDiv"></div>
+      
+      <div id="headerLogin">
+                <div id="signInDiv" className='headerLoginButton'></div>
+                { Object.keys(user).length != 0 &&
+                  <button onClick={(e)=> handleSignOut()}>Sign out</button>  
+                }
+                     
+                {user &&
+                    <div>
+                        <img src={user.picture}/>
+                        <h3>{user.given_name}</h3>
+                    </div>
+                }         
+            </div>
+
+
       <Routes>
         <Route path="/" element={<Movies />} />
         <Route path="/movie" element={<MoviePage movieTitle="Guardians of the Galaxy"/>} />
