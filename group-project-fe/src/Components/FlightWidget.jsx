@@ -60,10 +60,13 @@ const FlightWidget = ({date, destination, origin}) => {
             setData({someData: getBestFlightData});
             setFlightData({flights: getAllFlightData});
             setLoading(false);
+            console.log("*********************")
+            console.log(destination)
+            console.log(date)
           }
         
           aFunction(); 
-      },[])
+      },[destination, date])
 
   
   if (loading) {
@@ -72,20 +75,20 @@ const FlightWidget = ({date, destination, origin}) => {
   } else {
     return (
       <>
-       <DateSelector/>
-      <Table striped bordered hover>
-      <h2>Best Flight</h2>
-      <ListGroup horizontal>
+       
+      {/* <Table striped bordered hover> */}
+      {/* <h2>Best Flight</h2> */}
+      <ListGroup horizontal key={data.carrier}>
             <ListGroup.Item><img src={data.carrierLogoURL} height="35"/></ListGroup.Item>
             <ListGroup.Item className='col-2'>{data.carrier}</ListGroup.Item> 
             <ListGroup.Item className='col-2'>{moment(data.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
             <ListGroup.Item className='col-2'>{moment(data.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
             <ListGroup.Item className='col-1'>£{data.price}</ListGroup.Item>
       </ListGroup>
-      <h2>All flights</h2>
+      {/* <h2>All flights</h2> */}
       
           {flightdata.map((flight) => (
-          < ListGroup horizontal>
+          < ListGroup horizontal key={flight.carrier}>
             <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
             <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
             <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
@@ -93,7 +96,7 @@ const FlightWidget = ({date, destination, origin}) => {
             <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
             </ListGroup> 
           ))} 
-          </Table>
+          {/* </Table> */}
          
      
     </>

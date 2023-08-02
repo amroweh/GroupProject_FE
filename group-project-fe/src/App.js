@@ -15,7 +15,7 @@ import MoviePage from "./Components/MoviePage";
 function App() {
   return (
     <BrowserRouter>
-    <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>      
+     
       <Header />
 
       <div style={{minHeight: "100vh"}}>

@@ -3,6 +3,7 @@ import { Carousel } from "react-bootstrap";
 import ItemInCarousel from "./ItemInCarousel";
 import axios from "axios";
 
+
 // return an image for a specified place
 const getImageForLocation = async (location) => {
   try {
@@ -38,6 +39,7 @@ const LocationCarousel = (props) => {
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
+    props.locationHandler(locationData[selectedIndex]);
   };
 
   return (

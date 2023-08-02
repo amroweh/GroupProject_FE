@@ -1,5 +1,6 @@
 import React from 'react'
-import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet'
+import { MapContainer,TileLayer,Marker,Popup} from 'react-leaflet'
+
 import 'leaflet/dist/leaflet.css';
 
 import L, { map } from 'leaflet'
@@ -11,7 +12,7 @@ const customMarker = new L.icon({
 })
 L.Marker.prototype.options.icon = customMarker;
 
-const OSMap = ({longitude=51.505, latitude=-0.09}) => {
+const OSMap = ({longitude, latitude}) => {
   
 const mapStyles = {
     width: '400px',
@@ -19,13 +20,19 @@ const mapStyles = {
     border: '3px solid lightgrey',
     borderRadius: '3px'    
 }  
+
+console.log("------- OS MAP ---------")
+console.log("longitude: "+longitude)
+console.log("latitude: "+latitude)
+
   
 return (    
-    <MapContainer style={mapStyles} center={[longitude, latitude]} zoom={13} scrollWheelZoom={true}>
+    <MapContainer style={mapStyles} center={[latitude, longitude]} zoom={2} scrollWheelZoom={true}>
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[longitude, latitude]}>
+        
+        <Marker position={[latitude, longitude]}>
             <Popup>
                 Add info about location here...
             </Popup>
