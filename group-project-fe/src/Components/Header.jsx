@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./css/header.css"
 import { NavLink } from 'react-router-dom'
+import "./css/aboutpage.css"
 
 const Header = () => {
     const [menuClass, setMenuClass] = useState("")
