@@ -13,8 +13,10 @@ import WeatherSummary from "./Components/WeatherSummary";
 import MoviePage from "./Components/MoviePage";
 import AboutPage from "./Components/AboutPage";
 
+
 function App() {
-  return (
+  return (    
+
     <BrowserRouter>
      
       <Header />
