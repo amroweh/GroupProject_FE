@@ -19,13 +19,9 @@ const mapStyles = {
     height: '400px',
     border: '3px solid lightgrey',
     borderRadius: '3px'    
-}  
+} 
 
-console.log("------- OS MAP ---------")
-console.log("longitude: "+longitude)
-console.log("latitude: "+latitude)
 
-  
 return (    
     <MapContainer style={mapStyles} center={[latitude, longitude]} zoom={1} scrollWheelZoom={true}>
         <TileLayer

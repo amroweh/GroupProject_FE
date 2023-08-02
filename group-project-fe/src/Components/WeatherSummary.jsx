@@ -11,13 +11,16 @@ const WeatherSummary = (props) => {
             <div className='container weatherContainer'>         
                 <h4>Weather Forecast</h4>
                 <h6>{props.location}</h6>
-                <div className="weatherSummary">
+                <div className="weatherSummary">                    
                     {props.weather.forecast.forecastday.map(el=>{return <WeatherBox key={el.date} high={el.day.maxtemp_c} low={el.day.mintemp_c} day={el.date} precipitation={el.day.daily_chance_of_rain} wind={el.day.maxwind_kph} />})}
                 </div>
             </div>
         );
     }
-    else { return "loading..." } 
+    else { 
+        return <WeatherBox />
+        // return "loading..." 
+    } 
 }
 
 export default WeatherSummary;

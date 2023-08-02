@@ -29,25 +29,37 @@ const Movies = () => {
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  } else
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // } else
+  //   return (
+  //     <>
+  //       <h4 style={{marginTop: "40px"}}>Recommended Movies</h4>
+  //       <div className="movie-layout--container">
+  //         <div className="moviecard-container col-md-12 col-sm-6">
+  //           <div className="p-2 m-2 g-4 row">
+  //             {movieData.map((movie) => (
+  //               <MovieCard key={movie.movie_id} movie={movie} />
+  //             ))}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+
+
     return (
       <>
         <h4 style={{marginTop: "40px"}}>Recommended Movies</h4>
-        <div className="movie-layout--container">
-          {/* <div className="movie-layout--article"> */}
-          <div className="moviecard-container col-md-12 col-sm-6">
-            <div className="p-2 m-2 g-4 row">
-              {movieData.map((movie) => (
-                <MovieCard key={movie.movie_id} movie={movie} />
+        <div className="recommendedMoviesContainer container">        
+              {[1,2,3,4,5].map((movie, i) => (
+                <MovieCard key={movie.movie_id} movie={movie} imageIndex={i}/>
               ))}
-            </div>
-          </div>
-          {/* </div> */}
         </div>
       </>
     );
 };
+
+
 
 export default Movies;
