@@ -20,10 +20,13 @@ header .container{
 }
 
 #headerMenu{
+    display: block;
     grid-area: h2;
     margin: 0;
     padding: 0;
 }
+
+
 
 #headerMenu li{
     display: inline-block;
@@ -38,15 +41,20 @@ header .container{
     text-decoration: underline;
 }
 
-#headerLogin{
+#headerHamburgerMenu{
     grid-area: h3;
     text-align: right;
+    display: none;
+}
+#headerHamburgerIcon img{
+    width: 30px;
 }
 
 /* Media Query to adjust grid layout based on small vs large screens */
 @media only screen and (max-width: 575px) {
     header{
-        border-bottom: none;
+        border-bottom: 1px solid rgba(83,83,83,0.4);
+        padding-bottom: 0;
     }
     header .container{
         grid-template-columns: 1fr 1fr;
@@ -59,12 +67,21 @@ header .container{
         padding-left: 10px;
     }
     #headerMenu{
+        display: none;
         padding: 0;
         margin: 0;
     }
-    #headerLogin{
+    #headerMenu.show{
+        display: block;
+    }
+    #headerHamburgerMenu{
+        display: block;
         padding-right: 10px;
     }
+    #headerHamburgerMenu:hover{
+        cursor: pointer;
+    }
+    
     #headerMenu li:first-child{
         border-top: 1px solid rgba(83,83,83,0.4);
     }

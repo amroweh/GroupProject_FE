@@ -7,7 +7,14 @@ const google = window.google;
 
 const Header = () => {
 
+
     const [user, setUser ] = useState({})
+    const [menuClass, setMenuClass] = useState("")
+    
+    const toggleMenuClass = ()=>{
+        if(menuClass=="") setMenuClass("show")
+        else setMenuClass("")
+    }
 
     function handleCallbackResponse(response){
     var userObject = jwt_decode(response.credential)
@@ -31,12 +38,14 @@ const Header = () => {
       {theme: "outline", size: "large"}
     )
   },[]);
+  
+  
 
   return (
     <header>
         <div className='container'>
             <div id="headerLogo"><img src="/IronDevsLogo.png" alt="" /></div>
-            <ul id="headerMenu">
+            <ul id="headerMenu" className={menuClass}>
                 <li><NavLink style={{all: "unset"}} to="/">Home</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/">About</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/movie">Movie</NavLink></li> 
@@ -54,7 +63,13 @@ const Header = () => {
                         <h3>{user.given_name}</h3>
                     </div>
                 }         
+            <div id="headerHamburgerMenu">
+                <div id='headerHamburgerIcon'>
+                    {/* <NavLink style={{all: "unset"}} to="/">Login</NavLink> */}
+                    <img src="/hamburgerIcon.png" alt="" onClick={toggleMenuClass}/>
+                </div>                
             </div>
+        </div>
         </div>
     </header>
   )
