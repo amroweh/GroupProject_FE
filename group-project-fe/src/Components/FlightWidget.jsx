@@ -75,31 +75,32 @@ const FlightWidget = ({date, destination, origin}) => {
   } else {
     return (
       <>
-       
-      {/* <Table striped bordered hover> */}
-      {/* <h2>Best Flight</h2> */}
-      <ListGroup horizontal key={data.carrier}>
-            <ListGroup.Item><img src={data.carrierLogoURL} height="35"/></ListGroup.Item>
-            <ListGroup.Item className='col-2'>{data.carrier}</ListGroup.Item> 
-            <ListGroup.Item className='col-2'>{moment(data.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-            <ListGroup.Item className='col-2'>{moment(data.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-            <ListGroup.Item className='col-1'>£{data.price}</ListGroup.Item>
-      </ListGroup>
-      {/* <h2>All flights</h2> */}
-      
-          {flightdata.map((flight) => (
-          < ListGroup horizontal key={flight.carrier}>
-            <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
-            <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
-            <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-            <ListGroup.Item className='col-2'>{moment(flight.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-            <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
-            </ListGroup> 
-          ))} 
-          {/* </Table> */}
-         
+        <h6 style={{textAlign: "left", marginTop: "50px"}}>Flights for your chosen destination:</h6>
+        <div style={{marginBottom: "30px"}}>        
+        {/* <Table striped bordered hover> */}
+        {/* <h2>Best Flight</h2> */}
+        {/* <ListGroup horizontal key={data.carrier} >
+              <ListGroup.Item ><img src={data.carrierLogoURL} height="35"/></ListGroup.Item>
+              <ListGroup.Item className='col-2'>{data.carrier}</ListGroup.Item> 
+              <ListGroup.Item className='col-2'>{moment(data.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+              <ListGroup.Item className='col-2'>{moment(data.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+              <ListGroup.Item className='col-1'>£{data.price}</ListGroup.Item>
+        </ListGroup> */}
+        {/* <h2>All flights</h2> */}
+        
+            {flightdata.map((flight) => (
+            < ListGroup horizontal key={flight.carrier}>
+              <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
+              <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
+              <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+              <ListGroup.Item className='col-2'>{moment(flight.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+              <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
+              </ListGroup> 
+            ))} 
+            {/* </Table> */}
+          </div>
+      </>
      
-    </>
     )
 
   }        

@@ -27,7 +27,7 @@ console.log("latitude: "+latitude)
 
   
 return (    
-    <MapContainer style={mapStyles} center={[latitude, longitude]} zoom={2} scrollWheelZoom={true}>
+    <MapContainer style={mapStyles} center={[latitude, longitude]} zoom={1} scrollWheelZoom={true}>
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />

@@ -1,3 +1,14 @@
 .moviePage h1{
     padding: 30px 5px;
 }
+
+.weatherMapContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+}

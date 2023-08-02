@@ -1,6 +1,6 @@
 .weatherContainer{
-    padding-top: 5px;
     padding-bottom: 5px;
+    max-width: 700px;
 }
 
 .weatherContainer h6{
@@ -11,8 +11,9 @@
 .weatherSummary{
     width: 100%;
     background-color: "#FFFFFF";
-    padding: 20px 5px;
+    padding: 20px 0px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    align-content: middle;
 }

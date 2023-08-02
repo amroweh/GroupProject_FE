@@ -1,3 +1,21 @@
+/* Login Section Styles */
+.signInContainer{
+    /* display: flex; */
+}
+
+.signOutButton{
+    all: unset;
+    border: 1px solid rgba(83,83,83,0.3);
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+#headerLogin .loginImage{
+    border-radius: 50%;
+    width: 50px;
+}
+
+
 header{
     border-bottom: 1px solid rgba(83,83,83,0.3);
     padding-top: 20px;
@@ -25,8 +43,6 @@ header .container{
     margin: 0;
     padding: 0;
 }
-
-
 
 #headerMenu li{
     display: inline-block;
@@ -76,7 +92,7 @@ header .container{
     }
     #headerHamburgerMenu{
         display: block;
-        padding-right: 10px;
+        /* padding-right: 10px; */
     }
     #headerHamburgerMenu:hover{
         cursor: pointer;

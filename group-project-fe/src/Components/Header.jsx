@@ -3,10 +3,9 @@ import "./css/header.css"
 import { NavLink } from 'react-router-dom'
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode"
-const google = window.google;
 import "./css/aboutpage.css"
 
-
+const google = window.google;
 const Header = () => {
 
 
@@ -50,28 +49,33 @@ const Header = () => {
             <ul id="headerMenu" className={menuClass}>
                 <li><NavLink style={{all: "unset"}} to="/">Home</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/about">About</NavLink></li> 
-                <li><NavLink style={{all: "unset"}} to="/movie">Movie</NavLink></li> 
-                <li><NavLink style={{all: "unset"}} to="/">Contact</NavLink></li> 
+                <li><NavLink style={{all: "unset"}} to="/">Movies</NavLink></li> 
+                {/* <li><NavLink style={{all: "unset"}} to="/">Contact</NavLink></li>  */}
             </ul>
             <div id="headerLogin">
                 <div id="signInDiv" className='headerLoginButton'></div>
-                { Object.keys(user).length != 0 &&
-                  <button onClick={(e)=> handleSignOut()}>Sign out</button>  
-                }
-                     
-                {user &&
-                    <div>
-                        <img src={user.picture}/>
-                        <h3>{user.given_name}</h3>
-                    </div>
-                }         
-            <div id="headerHamburgerMenu">
-                <div id='headerHamburgerIcon'>
-                    {/* <NavLink style={{all: "unset"}} to="/">Login</NavLink> */}
-                    <img src="/hamburgerIcon.png" alt="" onClick={toggleMenuClass}/>
-                </div>                
+                <div className='signInContainer'>
+
+                        
+                    {user &&
+                        <div>
+                            <NavLink style={{all: "unset"}} to="/movie">
+                                <img className='loginImage' src={user.picture}/>
+                            </NavLink>
+                            {/* <h4>{user.given_name}</h4> */}
+                        </div>
+                    }         
+                    { Object.keys(user).length != 0 &&
+                    
+                    <button className='signOutButton' onClick={(e)=> handleSignOut()}>Sign out</button>  
+                    }
+                </div>
+                <div id="headerHamburgerMenu">
+                    <div id='headerHamburgerIcon'>
+                        <img src="/hamburgerIcon.png" alt="" onClick={toggleMenuClass}/>
+                    </div>                
+                </div>
             </div>
-        </div>
         </div>
     </header>
   )

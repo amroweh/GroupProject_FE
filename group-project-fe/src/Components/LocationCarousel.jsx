@@ -43,10 +43,11 @@ const LocationCarousel = (props) => {
   };
 
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>
-        Use the carousel to select your location
-      </h1>
+    <div className="container">
+      <p style={{ textAlign: "center", marginBottom: "40px" }}>
+        Use the carousel to toggle movie locations
+      </p>
+      <h6 style={{textAlign: "left"}}>This movie has been filmed in the following locations:</h6>
       <Carousel
         fade
         interval={null}
@@ -68,12 +69,12 @@ const LocationCarousel = (props) => {
           </Carousel.Item>
         ))}
       </Carousel>
-      <h3 style={{ textAlign: "center" }}>
-        The current city and country selected is: {locationData[index].city}
+      <p style={{ textAlign: "left", marginBottom: "20px" }}>
+        The current city and country selected is: <b>{locationData[index].city}</b>
         {" in "}
         {locationData[index].country}
-      </h3>
-    </>
+      </p>
+    </div>
   );
 };
 

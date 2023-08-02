@@ -34,6 +34,7 @@ const Movies = () => {
   } else
     return (
       <>
+        <h4 style={{marginTop: "40px"}}>Recommended Movies</h4>
         <div className="movie-layout--container">
           {/* <div className="movie-layout--article"> */}
           <div className="moviecard-container col-md-12 col-sm-6">

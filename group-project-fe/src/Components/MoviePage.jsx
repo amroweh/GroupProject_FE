@@ -10,8 +10,8 @@ import DateSelector from "./DateSelector";
 import axios from "axios";
 
 const MoviePage = (props) => {
-  let { state } = useLocation();
-  // console.log(state);
+  let { state } = useLocation()
+
   const [weatherDetails, setWeather] = useState([])
   const [locationDetails, setLocationDetails] = useState(JSON.parse(state)[0])
   const [date, setDate] = useState((new Date()).toISOString().split('T')[0])
@@ -75,13 +75,18 @@ const MoviePage = (props) => {
 
   return (
     <div className="container moviePage">
-      <h1>{props.movieTitle}</h1>
+      <h1 style={{paddingBottom: "0"}}>Movie Details{props.movieTitle}</h1>
       <LocationCarousel locs={state} locationHandler={locationHandler} />{" "}
       {/* the props being passed into carousel is the locations */}
+      <div className="weatherMapContainer container">
+        <WeatherSummary weather={weatherDetails} location={locationDetails.city+", "+locationDetails.country} />
+        <OSMap longitude={geoL.long} latitude={geoL.lat} />
+      </div>
       <DateSelector dateChangeHandler={dateChangeHandler}/>
-      <WeatherSummary weather={weatherDetails} location={locationDetails.city+", "+locationDetails.country} />
-      <OSMap longitude={geoL.long} latitude={geoL.lat} />
-      <FlightWidget date={date} destination={locationDetails.nearest_airport_code}  origin="LHR"></FlightWidget>     
+      <div className="container">
+        <FlightWidget date={date} destination="LHR"  origin="LHR"></FlightWidget>             
+      </div>
+      {/* <FlightWidget date={date} destination={locationDetails.nearest_airport_code}  origin="LHR"></FlightWidget>      */}
     </div>
   );
 };
