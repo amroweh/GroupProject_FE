@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode"
 const google = window.google;
+import "./css/aboutpage.css"
+
 
 const Header = () => {
 
@@ -47,7 +49,7 @@ const Header = () => {
             <div id="headerLogo"><img src="/IronDevsLogo.png" alt="" /></div>
             <ul id="headerMenu" className={menuClass}>
                 <li><NavLink style={{all: "unset"}} to="/">Home</NavLink></li> 
-                <li><NavLink style={{all: "unset"}} to="/">About</NavLink></li> 
+                <li><NavLink style={{all: "unset"}} to="/about">About</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/movie">Movie</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/">Contact</NavLink></li> 
             </ul>

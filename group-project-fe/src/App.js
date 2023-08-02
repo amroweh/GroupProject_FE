@@ -11,19 +11,21 @@ import FlightWidget from "./Components/FlightWidget";
 import DateSelector from "./Components/DateSelector";
 import WeatherSummary from "./Components/WeatherSummary";
 import MoviePage from "./Components/MoviePage";
+import AboutPage from "./Components/AboutPage";
 
 
 function App() {
   return (    
 
     <BrowserRouter>
-    <FlightWidget date="2023-08-20" destination="JFK" origin="LHR"></FlightWidget>      
+     
       <Header />
 
       <div style={{minHeight: "100vh"}}>
         <Routes>
           <Route path="/" element={<Movies />} />
           <Route path="/:id/plan" element={<MoviePage />} />
+          <Route path="/about" element={<AboutPage />}/>
         </Routes>
       </div>
 

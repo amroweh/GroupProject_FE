@@ -4,11 +4,12 @@ import {FormGroup, Form} from 'react-bootstrap';
 import dateselector from "./css/dateselector.css"
 
 
-const DateSelector = () => {
+const DateSelector = (props) => {
+  
   return (
     <div>
     <FormGroup>
-        <Form.Control type="date" className="date"></Form.Control>
+        <Form.Control onChange={props.dateChangeHandler} type="date" className="date"></Form.Control>
     </FormGroup>
     </div>
   )
