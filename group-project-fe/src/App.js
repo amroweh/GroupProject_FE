@@ -11,6 +11,7 @@ import FlightWidget from "./Components/FlightWidget";
 import DateSelector from "./Components/DateSelector";
 import WeatherSummary from "./Components/WeatherSummary";
 import MoviePage from "./Components/MoviePage";
+import AboutPage from "./Components/AboutPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Movies />} />
           <Route path="/:id/plan" element={<MoviePage />} />
+          <Route path="/about" element={<AboutPage />}/>
         </Routes>
       </div>
 

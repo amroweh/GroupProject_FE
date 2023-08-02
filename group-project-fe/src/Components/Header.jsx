@@ -15,7 +15,7 @@ const Header = () => {
             <div id="headerLogo"><img src="/IronDevsLogo.png" alt="" /></div>
             <ul id="headerMenu" className={menuClass}>
                 <li><NavLink style={{all: "unset"}} to="/">Home</NavLink></li> 
-                <li><NavLink style={{all: "unset"}} to="/">About</NavLink></li> 
+                <li><NavLink style={{all: "unset"}} to="/about">About</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/movie">Movie</NavLink></li> 
                 <li><NavLink style={{all: "unset"}} to="/">Contact</NavLink></li> 
             </ul>
