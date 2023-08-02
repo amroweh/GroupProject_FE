@@ -30,11 +30,9 @@ const MoviePage = (props) => {
   const getWeather = async (date, long, lat)=>{
     try{
       const url = `http://18.130.102.78:8082/weather?date=${date}&lon=${lat}&lat=${long}&days=7`
-
       const res = await axios.get(url);
       const data = await res.data;
-      return data;
-      
+      return data;      
     }
     catch(e){
         return {error: `Data not available from server: ${e.message}`}
@@ -43,63 +41,36 @@ const MoviePage = (props) => {
   const getGeo = async (city)=>{
     try{
       const url = `http://18.130.102.78:8082/location?city=${city}`
-
       const res = await axios.get(url);
       const data = await res.data;
       return data;
-      
     }
     catch(e){
         return {error: `Data not available from server: ${e.message}`}
     }
   }
+  const getGeoAndWeather = async (city)=>{
 
-  const getGeoAndWeather = async (city, date)=>{
+    const year = date.substring(0,4)
+    const month = date.substring(5,7)
+    const day = date.substring(8,10)
+    const myDate = day+"-"+month+"-"+year;
+
     console.log("function running...")
     const geoStuff = await getGeo(city)
-    setGeo(geoStuff)
-    console.log("middle function...")
-    const weatherStuff = await getWeather(date, geoL.long, geoL.lat)
+    console.log(geoStuff)
+    setGeo({long: geoStuff.longitude, lat: geoStuff.latitude})    
+    const weatherStuff = await getWeather(myDate, geoStuff.longitude, geoStuff.latitude)
     setWeather(weatherStuff)
-    console.log("end function...")
   }
 
-  useEffect(()=>{
-    const year = date.substring(0,4)
-    const month = date.substring(5,7)
-    const day = date.substring(8,10)
-    const myDate = day+"-"+month+"-"+year;
-
-    // getGeo(locationDetails.city)
-    // .then((geo)=>{
-    //     // console.log("On load: ")
-    //     // console.log(geo)        
-    //     setGeo({long: geo.longitude, lat: geo.latitude})
-    //   })
-
-    // getWeather(myDate, geoL.long, geoL.lat)
-    //   .then((weather)=>{setWeather(weather)})
-
-      
-
-      getGeoAndWeather(locationDetails.city, myDate)
-
+  useEffect(()=>{ // FIRST CALL - ON LOAD
+      getGeoAndWeather(locationDetails.city)
   }, [])
   
-  
-  
-
-useEffect(()=>{  
-
-    const year = date.substring(0,4)
-    const month = date.substring(5,7)
-    const day = date.substring(8,10)
-    const myDate = day+"-"+month+"-"+year;
-
-    getGeoAndWeather(locationDetails.city, myDate)
-
-    
-}, [date, locationDetails])
+  useEffect(()=>{  // SECOND CALL - ON CHANGE
+    getGeoAndWeather(locationDetails.city)  
+  }, [date, locationDetails])
  
 
   return (
@@ -109,7 +80,7 @@ useEffect(()=>{
       {/* the props being passed into carousel is the locations */}
       <DateSelector dateChangeHandler={dateChangeHandler}/>
       <WeatherSummary weather={weatherDetails} location={locationDetails.city+", "+locationDetails.country} />
-      {/* <OSMap longitude={geoL.long} latitude={geoL.lat} /> */}
+      <OSMap longitude={geoL.long} latitude={geoL.lat} />
       <FlightWidget date={date} destination={locationDetails.nearest_airport_code}  origin="LHR"></FlightWidget>     
     </div>
   );
