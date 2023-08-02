@@ -10,10 +10,8 @@ const Header = () => {
     const [user, setUser ] = useState({})
 
     function handleCallbackResponse(response){
-    console.log("Encoded JWT ID:" + response.credential);
     var userObject = jwt_decode(response.credential)
     setUser(userObject)
-    console.log(user);
     document.getElementById("signInDiv").hidden = true;
   }
 
