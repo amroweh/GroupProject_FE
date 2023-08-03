@@ -14,10 +14,10 @@ const Footer = () => {
         </div>
         {/* Middle Footer Section */}
         <ul id='footer-middle-section'>
-          <li><NavLink className="footer-nav-link" to="/">Link 1</NavLink></li> 
-          <li><NavLink className="footer-nav-link" to="/">Link 2</NavLink></li> 
-          <li><NavLink className="footer-nav-link" to="/">Link 3</NavLink></li> 
-          <li><NavLink className="footer-nav-link" to="/">Link 4</NavLink></li> 
+          <li><NavLink className="footer-nav-link" to="/">Home</NavLink></li> 
+          <li><NavLink className="footer-nav-link" to="/">About</NavLink></li> 
+          <li><NavLink className="footer-nav-link" to="/">Movies</NavLink></li> 
+          <li><NavLink className="footer-nav-link" to="/">Sky</NavLink></li> 
         </ul>
         {/* Right Footer Section */}
         <div id='footer-language-section'>
