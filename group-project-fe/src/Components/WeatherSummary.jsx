@@ -18,8 +18,7 @@ const WeatherSummary = (props) => {
         );
     }
     else { 
-        return <WeatherBox />
-        // return "loading..." 
+        return <img style={{width: "25px", marginTop: "20px"}} src="/loading.gif"></img>
     } 
 }
 

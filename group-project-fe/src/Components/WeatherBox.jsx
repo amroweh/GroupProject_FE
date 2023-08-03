@@ -28,9 +28,7 @@ const WeatherBox = (props) => {
 
     return (
     <div className="weatherBox">
-        <h5>{props.day}</h5>
-        {/* <h5>{ getDayOfWeekFromNumber((new Date("2022-08-07")).getDay())}</h5> */}
-        {/* <h5>{ getDayOfWeekFromNumber(props.day.getDay())}</h5> */}
+        <h5>{ getDayOfWeekFromNumber(new Date(props.day).getDay())}</h5>
         {/* This determines which icon is displayed based on high temperature (should be replaced with proper logic) */}
         <div className='weatherIconContainer'>
           {(()=>{

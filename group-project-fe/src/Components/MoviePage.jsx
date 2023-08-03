@@ -84,9 +84,8 @@ const MoviePage = (props) => {
       </div>
       <DateSelector dateChangeHandler={dateChangeHandler}/>
       <div className="container">
-        <FlightWidget date={date} destination="LHR"  origin="LHR"></FlightWidget>             
+        <FlightWidget date={date} destination={locationDetails.nearest_airport_code}  origin="LHR"></FlightWidget>             
       </div>
-      {/* <FlightWidget date={date} destination={locationDetails.nearest_airport_code}  origin="LHR"></FlightWidget>      */}
     </div>
   );
 };

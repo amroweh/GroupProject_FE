@@ -54,8 +54,6 @@ const Header = () => {
             <div id="headerLogin">
                 <div id="signInDiv" className='headerLoginButton'></div>
                 <div className='signInContainer'>
-
-                        
                     {user &&
                         <div style={{display: "inline-block", marginRight: "3px"}}>
                             <NavLink style={{all: "unset"}} to="/movie">
@@ -67,7 +65,6 @@ const Header = () => {
                     { Object.keys(user).length != 0 &&                    
                     <button className='signOutButton' onClick={(e)=> handleSignOut()}>Sign out</button>  
                     }
-                    
                 </div>
                 <div id="headerHamburgerMenu">
                     <div id='headerHamburgerIcon'>
