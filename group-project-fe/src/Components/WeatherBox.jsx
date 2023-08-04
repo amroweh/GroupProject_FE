@@ -32,7 +32,8 @@ const WeatherBox = (props) => {
         {/* This determines which icon is displayed based on high temperature (should be replaced with proper logic) */}
         <div className='weatherIconContainer'>
           {(()=>{
-            if(props.high>=30) return (<img src="/Sunny.png" alt=""/>)
+            if(props.precipitation>=40) return (<img src="/Rainy.png" alt=""/>)          
+            else if(props.high>=30) return (<img src="/Sunny.png" alt=""/>)
             else if(props.high>=20) return (<img src="/Cloudy.png" alt=""/>)
             else return (<img src="/Rainy.png" alt=""/>)          
           })()}

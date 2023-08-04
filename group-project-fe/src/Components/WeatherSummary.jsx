@@ -4,8 +4,6 @@ import "./css/weathersummary.css";
 
 const WeatherSummary = (props) => {  
 
-// console.log(props.weather)
-
     if(props.weather.forecast){
         return (
             <div className='container weatherContainer'>         

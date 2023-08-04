@@ -19,7 +19,7 @@ const FlightWidget = ({date, destination, origin}) => {
 
     //add use state
     const [{someData: data}, setData] = useState("");
-    const [{flights: flightdata}, setFlightData] = useState("");
+    const [flightdata, setFlightData] = useState("");
     const [loading, setLoading] = useState(true);
 
     //function to call the BestFlight
@@ -58,7 +58,7 @@ const FlightWidget = ({date, destination, origin}) => {
             const getBestFlightData = await getBestFlight();
             const getAllFlightData = await getTopFlights();
             setData({someData: getBestFlightData});
-            setFlightData({flights: getAllFlightData});
+            setFlightData(getAllFlightData);
             setLoading(false);
             console.log("*********************")
             console.log(destination)
@@ -75,29 +75,26 @@ const FlightWidget = ({date, destination, origin}) => {
   } else {
     return (
       <>
+        <h4 style={{textAlign: "left", lineHeight: "0", paddingTop: "20px"}}>Flights</h4>
         <h6 style={{textAlign: "left", marginTop: "50px"}}>Flights for your chosen destination:</h6>
         <div style={{marginBottom: "30px"}}>        
-        {/* <Table striped bordered hover> */}
-        {/* <h2>Best Flight</h2> */}
-        {/* <ListGroup horizontal key={data.carrier} >
-              <ListGroup.Item ><img src={data.carrierLogoURL} height="35"/></ListGroup.Item>
-              <ListGroup.Item className='col-2'>{data.carrier}</ListGroup.Item> 
-              <ListGroup.Item className='col-2'>{moment(data.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-              <ListGroup.Item className='col-2'>{moment(data.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-              <ListGroup.Item className='col-1'>£{data.price}</ListGroup.Item>
-        </ListGroup> */}
-        {/* <h2>All flights</h2> */}
-        
+            < ListGroup horizontal style={{fontWeight: "Bold"}}>
+                <ListGroup.Item style={{backgroundColor:"rgba(83,83,83,0.8)", color: "white"}}><img src='/airlinelogo.png' style={{opacity: 0}} height="35"/></ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor:"rgba(83,83,83,0.8)", color: "white"}} className='col-2'>Carrier</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor:"rgba(83,83,83,0.8)", color: "white"}} className='col-2'>Departure</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor:"rgba(83,83,83,0.8)", color: "white"}}className='col-2'>Arrival</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor:"rgba(83,83,83,0.8)", color: "white"}} className='col-1'>Price</ListGroup.Item>
+            </ListGroup>  
+            {flightdata==null? <div>"no flights match your parameters..." </div> :null}
             {flightdata.map((flight) => (
             < ListGroup horizontal key={flight.carrier}>
-              <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
-              <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
-              <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-              <ListGroup.Item className='col-2'>{moment(flight.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
-              <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
-              </ListGroup> 
-            ))} 
-            {/* </Table> */}
+                <ListGroup.Item><img src={flight.carrierLogoURL} height="35"/></ListGroup.Item>
+                <ListGroup.Item className='col-2'>{flight.carrier}</ListGroup.Item>
+                <ListGroup.Item className='col-2'>{moment(flight.departure).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+                <ListGroup.Item className='col-2'>{moment(flight.arrival).format('Do MMM [at] h:mm a')}</ListGroup.Item>
+                <ListGroup.Item className='col-1'>£{flight.price}</ListGroup.Item>
+            </ListGroup> 
+            ))}            
           </div>
       </>
      

@@ -5,3 +5,43 @@ div {
 h1 {
     margin-top: 1rem;
 }
+
+.aboutMainDiv{
+    display: flex;   
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 5vh;
+}
+
+.aboutDescription{
+    flex: 2;
+    text-align: left;
+    font-size: 18px;
+}
+
+.aboutDescription h1{
+    font-size: 60px;
+    text-decoration: underline;
+    text-underline-offset: 20px;
+    text-decoration-color: #EE5B22;
+    text-decoration-thickness: 3px;
+    margin-bottom: 40px;
+}
+
+.aboutImage{
+    flex: 3;
+    display: flex;
+    justify-content: center;
+}   
+
+.aboutImage img{
+    max-width: 500px;
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .aboutDescription{
+        text-align: center;
+        margin-bottom: 40px;
+    } 
+}
